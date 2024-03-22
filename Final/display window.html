@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Display window</title>
+<style>
+  .door {
+    width: 50%;
+    position: fixed;
+    height: 100vh;
+    overflow: hidden;
+    top: 0;
+    transition: transform 2s ease;
+    z-index: 2;
+  }
+
+  #leftDoor {
+    left: 0;
+  }
+
+  #rightDoor {
+    right: 0;
+  }
+
+  #leftDoor img, #rightDoor img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* 隐藏的内容样式 */
+  #content {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1690px;
+    height: 960px;
+    z-index: 1;
+    display: none;
+    background-image: url('project3 images/37.gif'); /* 设置背景图片 */
+    background-size: cover; /* 背景图片覆盖整个元素 */
+  }
+
+  /* 图像按钮样式 */
+  .image-button {
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 200px;
+    margin-left: 500px; /* 根据需要调整 */
+  }
+
+  .image-button img {
+    width: 680px; /* 根据需要调整图像按钮大小 */
+    height: auto;
+  }
+
+</style>
+</head>
+<body>
+
+<div id="leftDoor" class="door">
+  <img src="project3 images/25.jpg" alt="Left Door">
+</div>
+<div id="rightDoor" class="door">
+  <img src="project3 images/26.jpg" alt="Right Door">
+</div>
+
+<div id="content">
+  <!-- 在这里添加更多内容 -->
+  <a href="project3 webpages/cleaning plant.html" class="image-button" target="_blank">
+    <img src="project3 images/34.png" alt="跳转按钮">
+  </a>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const leftDoor = document.getElementById('leftDoor');
+  const rightDoor = document.getElementById('rightDoor');
+  const content = document.getElementById('content');
+
+  // 绑定鼠标悬停事件到每扇门上
+  [leftDoor, rightDoor].forEach(door => {
+    door.addEventListener('mouseenter', () => {
+      // 实现双开门效果
+      leftDoor.style.transform = 'translateX(-100%)';
+      rightDoor.style.transform = 'translateX(100%)';
+
+      // 延时显示内容，等待门完全打开
+      setTimeout(() => {
+        content.style.display = 'block';
+      }, 0); // 与CSS中的transition时间一致
+    });
+  });
+});
+</script>
+
+</body>
+</html>
